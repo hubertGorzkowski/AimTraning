@@ -1,45 +1,39 @@
 document.onselectstart = function () {
   return false;
 };
-const btn = document.body.querySelector("button");
-const section = document.body.querySelector("section");
+const startBtn = document.body.querySelector(".menu__btn--start");
+const menu = document.body.querySelector(".menu");
 const html = document.querySelector("html");
-const h2 = document.querySelector("h2");
-const h4 = document.querySelector("h4");
+const pointsNumber = document.querySelector(".game__statistics--points");
+const targetsNumber = document.querySelector(".game__statistics--targets");
 
 let counter = 0;
 let activeElements = 0;
 let resultOFGame;
 
 //funkcja wykrywa czy uzytkownik trafil w cel i zwieksza licznik
-function shotOnTarget(event) {
+function shotOnTarget() {
   document.body.removeChild(this);
   counter++;
   activeElements--;
-  const h2 = document.body.querySelector("h2");
-  h2.textContent = `Liczba punktów: ${counter}`;
+  pointsNumber.textContent = `Points: ${counter}`;
 }
 
 //funkcja wyświetla stan po zakończeniu gry
 function endGame() {
   function elementsAfterGame() {
-    const main = document.createElement("main");
-    document.body.appendChild(main);
-    const h3 = document.createElement("h3");
-    main.appendChild(h3);
+    const gameResult = document.querySelector(".result__title");
+    const resultSection = document.querySelector(".result");
     html.style.cursor = "default";
-    const btn = document.createElement("button");
-    main.appendChild(btn);
-    btn.textContent = "Zagraj ponownie";
-    btn.classList.add("afterGame");
-    main.classList.add("afterGame");
-    h3.classList.add("afterGame");
+    // btn.classList.add("result__visible");
+    // main.classList.add("result__visible");
+    gameResult.classList.add("result__visible");
 
     function statusGame() {
       if (resultOFGame == 2) {
-        h3.innerText = `Wygrałeś! Twój czas to: ${timerTxt.textContent}`;
+        gameResult.innerText = "You won!";
       } else if (resultOFGame == 1) {
-        h3.innerText = `Przegrałeś! Zdobyłeś ${counter} punktów!`;
+        gameResult.innerText = "You lost!";
       }
     }
     statusGame();
@@ -50,9 +44,7 @@ function endGame() {
   elementsAfterGame();
 }
 
-const timerTxt = document.createElement("p");
-document.body.appendChild(timerTxt);
-timerTxt.classList.add("timer");
+const timerTxt = document.querySelector(".game__statistics--timer");
 //funckja tworzy stoper, ktory mierzy czas
 function timer() {
   let ms = 0;
@@ -97,11 +89,10 @@ function timer() {
 
 //funkcja zaczyna grę. Znika początkowy wygląd, tło zmienia się na czarne, pojawiaja się counter
 function startGame() {
-  document.body.removeChild(section);
+  document.body.removeChild(menu);
   html.style.cursor = "crosshair";
-  document.body.style.backgroundColor = "black";
-  h2.innerHTML = `Liczba punktów: ${counter}`;
-  h4.innerHTML = `Liczba kropek: ${activeElements}`;
+  pointsNumber.innerHTML = `Points: ${counter}`;
+  targetsNumber.innerHTML = `Targets: ${activeElements}`;
 
   //funcja tworzy cele i ustala warunki wygranej i przegranej
   function makeTargets() {
@@ -117,14 +108,15 @@ function startGame() {
       endGame();
       window.clearInterval(targets);
     } else {
-      const div = document.createElement("div");
-      document.body.appendChild(div);
+      const dot = document.createElement("div");
+      dot.className = "dot";
+      document.body.appendChild(dot);
       activeElements++;
-      h4.textContent = `Liczba kropek: ${activeElements}`;
-      div.style.top = positionY + "%";
-      div.style.left = positionX + "%";
+      targetsNumber.textContent = `Liczba kropek: ${activeElements}`;
+      dot.style.top = positionY + "%";
+      dot.style.left = positionX + "%";
 
-      div.addEventListener("click", shotOnTarget);
+      dot.addEventListener("click", shotOnTarget);
     }
   }
 
@@ -132,4 +124,4 @@ function startGame() {
   timer();
 }
 
-btn.addEventListener("click", startGame);
+startBtn.addEventListener("click", startGame);
