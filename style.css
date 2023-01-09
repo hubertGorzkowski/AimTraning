@@ -8,29 +8,68 @@
 body {
   min-height: 100vh;
   max-height: 100vh;
-  background-color: lightblue;
+  background-color: rgb(43, 128, 157);
   transition: 1s 0.5s;
   overflow: hidden;
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: red;
   min-height: 100vh;
 }
 
 .menu__title {
   text-align: center;
   font-size: 55px;
+  padding: 8vh;
 }
 
-.menu__level {
+.menu__levels {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(
+    to top right,
+    #ff5722,
+    red,
+    #ff5722,
+    #e25a72
+  );
+  width: 35vw;
+  margin: 0 auto;
+  padding: 20px;
+  border: 5px solid black;
+}
+
+.menu__choose-level {
   text-align: center;
+  margin: 15px 0 50px;
+  font-size: 28px;
 }
 
-div {
+.menu__btn {
+  width: 20vw;
+  margin: 0px auto;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #555;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.menu__btn:hover {
+  background-color: #fff;
+  color: black;
+  border: 2px solid black;
+}
+
+.menu__btn--start {
+  margin: 50px auto 30px;
+  font-size: 32px;
+  padding: 15px;
+  background-color: #fff;
+  color: black;
+}
+
+/* div {
   position: absolute;
   width: 50px;
   height: 50px;
@@ -99,4 +138,4 @@ button.afterGame {
   border: 2px solid black;
   text-transform: uppercase;
   cursor: pointer;
-}
+} */
