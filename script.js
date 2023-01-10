@@ -11,6 +11,17 @@ let counter = 0;
 let activeElements = 0;
 let resultOFGame;
 
+const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
+
+difficultyLevelButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    difficultyLevelButtons.forEach((btn) => {
+      btn.classList.remove("menu__btn--checked");
+    });
+    button.classList.add("menu__btn--checked");
+  });
+});
+
 //funkcja wykrywa czy uzytkownik trafil w cel i zwieksza licznik
 function shotOnTarget() {
   document.body.removeChild(this);
@@ -27,7 +38,13 @@ function endGame() {
       dot.classList.add("invisible");
     });
     const gameResult = document.querySelector(".result__title");
-    const resultSection = document.querySelector(".result");
+    const statisticsOfGame = document.querySelector(".result__statistics");
+    statisticsOfGame.innerHTML = `
+    <p class="result__point">${pointsNumber}</p>
+    `;
+    pointsNumber.innerHTML = "";
+    targetsNumber.innerHTML = "";
+
     gameResult.classList.add("result__visible");
 
     function statusGame() {
@@ -48,7 +65,7 @@ function endGame() {
 //funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
 function startGame() {
   document.querySelector(".menu").remove();
-  pointsNumber.innerHTML = `Points: ${counter}`;
+  pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
   targetsNumber.innerHTML = `Targets: ${activeElements}`;
 
   //funcja tworzy cele i ustala warunki wygranej i przegranej
@@ -56,7 +73,7 @@ function startGame() {
     const positionY = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
     const positionX = Math.floor(Math.random() * (95 - 1 + 1)) + 1;
 
-    if (counter === 10) {
+    if (counter === pointsToWin) {
       resultOFGame = 2;
       endGame();
       window.clearInterval(targets);
