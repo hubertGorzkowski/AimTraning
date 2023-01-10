@@ -10,6 +10,9 @@ const targetsNumber = document.querySelector(".game__statistics--targets");
 let counter = 0;
 let activeElements = 0;
 let resultOFGame;
+let pointsToWin = 25;
+let amountOfElements;
+let visibilityTime;
 
 const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
 
@@ -19,6 +22,17 @@ difficultyLevelButtons.forEach((button) => {
       btn.classList.remove("menu__btn--checked");
     });
     button.classList.add("menu__btn--checked");
+
+    if (difficultyLevelButtons[0] == this) {
+      amountOfElements = 8;
+      visibilityTime = 800;
+    } else if (difficultyLevelButtons[1] == this) {
+      amountOfElements = 6;
+      visibilityTime = 600;
+    } else if (difficultyLevelButtons[2] == this) {
+      amountOfElements = 5;
+      visibilityTime = 500;
+    }
   });
 });
 
@@ -77,7 +91,7 @@ function startGame() {
       resultOFGame = 2;
       endGame();
       window.clearInterval(targets);
-    } else if (activeElements > 3) {
+    } else if (activeElements > amountOfElements) {
       resultOFGame = 1;
       endGame();
       window.clearInterval(targets);
@@ -94,7 +108,7 @@ function startGame() {
     }
   }
 
-  const targets = window.setInterval(makeTargets, 500);
+  const targets = window.setInterval(makeTargets, visibilityTime);
 }
 
 startBtn.addEventListener("click", startGame);

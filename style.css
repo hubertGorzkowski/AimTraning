@@ -135,6 +135,8 @@ body {
 }
 
 .result__title {
+  text-transform: uppercase;
+  font-size: 70px;
 }
 
 .visible {
