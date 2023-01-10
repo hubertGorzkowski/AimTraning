@@ -22,11 +22,12 @@ function shotOnTarget() {
 //funkcja wyświetla stan po zakończeniu gry
 function endGame() {
   function elementsAfterGame() {
+    const dots = document.querySelectorAll(".dot");
+    dots.forEach((dot) => {
+      dot.classList.add("invisible");
+    });
     const gameResult = document.querySelector(".result__title");
     const resultSection = document.querySelector(".result");
-    html.style.cursor = "default";
-    // btn.classList.add("result__visible");
-    // main.classList.add("result__visible");
     gameResult.classList.add("result__visible");
 
     function statusGame() {
@@ -37,60 +38,16 @@ function endGame() {
       }
     }
     statusGame();
-    btn.addEventListener("click", function () {
-      window.location.reload();
-    });
+    // btn.addEventListener("click", function () {
+    //   window.location.reload();
+    // });
   }
   elementsAfterGame();
 }
 
-const timerTxt = document.querySelector(".game__statistics--timer");
-//funckja tworzy stoper, ktory mierzy czas
-function timer() {
-  let ms = 0;
-  let s = 0;
-  let m = 0;
-
-  function run() {
-    const showTime = function () {
-      timerTxt.textContent =
-        (m < 10 ? "0" + m : m) +
-        ":" +
-        (s < 10 ? "0" + s : s) +
-        ":" +
-        (ms < 10 ? "0" + ms : ms);
-      ms++;
-      if (ms == 100) {
-        ms = 0;
-        s++;
-      }
-      if (s == 60) {
-        s = 0;
-        m++;
-      }
-    };
-    if (resultOFGame == 1 || resultOFGame == 2) {
-      window.clearInterval(on);
-      document
-        .querySelector("button.afterGame")
-        .addEventListener("click", function () {
-          ms = 0;
-          s = 0;
-          m = 0;
-        });
-      showTime();
-    } else {
-      showTime();
-    }
-  }
-
-  const on = setInterval(run, 10);
-}
-
-//funkcja zaczyna grę. Znika początkowy wygląd, tło zmienia się na czarne, pojawiaja się counter
+//funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
 function startGame() {
-  document.body.removeChild(menu);
-  html.style.cursor = "crosshair";
+  document.querySelector(".menu").remove();
   pointsNumber.innerHTML = `Points: ${counter}`;
   targetsNumber.innerHTML = `Targets: ${activeElements}`;
 
@@ -112,7 +69,7 @@ function startGame() {
       dot.className = "dot";
       document.body.appendChild(dot);
       activeElements++;
-      targetsNumber.textContent = `Liczba kropek: ${activeElements}`;
+      targetsNumber.textContent = `Targets: ${activeElements}`;
       dot.style.top = positionY + "%";
       dot.style.left = positionX + "%";
 
@@ -121,7 +78,6 @@ function startGame() {
   }
 
   const targets = window.setInterval(makeTargets, 500);
-  timer();
 }
 
 startBtn.addEventListener("click", startGame);
