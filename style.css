@@ -99,6 +99,36 @@ body {
   color: black;
 }
 
+.menu__custom {
+  position: absolute;
+  top: 0;
+  right: -21vw;
+  height: 100vh;
+  width: 20vw;
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-template-rows: 50px 50px 50px;
+  align-content: center;
+  background-color: red;
+  transition: 0.2s;
+}
+
+.menu__custom--active {
+  right: 0vw;
+}
+
+.menu__back {
+  position: absolute;
+  top: 0%;
+  right: 5%;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+label {
+  line-height: 50px;
+  background-color: green;
+}
 .game {
   position: absolute;
   top: 50%;

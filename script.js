@@ -12,26 +12,35 @@ let activeElements = 0;
 let resultOFGame;
 let pointsToWin = 25;
 let amountOfElements;
-let visibilityTime;
+let addTargetTime;
 
 const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
 
 difficultyLevelButtons.forEach((button) => {
+  const custom = document.querySelector(".menu__custom");
   button.addEventListener("click", function () {
     difficultyLevelButtons.forEach((btn) => {
       btn.classList.remove("menu__btn--checked");
+      custom.classList.remove("menu__custom--active");
     });
     button.classList.add("menu__btn--checked");
 
     if (difficultyLevelButtons[0] == this) {
       amountOfElements = 8;
-      visibilityTime = 800;
+      addTargetTime = 800;
     } else if (difficultyLevelButtons[1] == this) {
       amountOfElements = 6;
-      visibilityTime = 600;
+      addTargetTime = 600;
     } else if (difficultyLevelButtons[2] == this) {
       amountOfElements = 5;
-      visibilityTime = 500;
+      addTargetTime = 500;
+    } else if (difficultyLevelButtons[3] == this) {
+      if (
+        difficultyLevelButtons[3].className == "menu__btn menu__btn--checked"
+      ) {
+        custom.classList.add("menu__custom--active");
+        console.log("dz", difficultyLevelButtons[3].className);
+      }
     }
   });
 });
@@ -108,7 +117,7 @@ function startGame() {
     }
   }
 
-  const targets = window.setInterval(makeTargets, visibilityTime);
+  const targets = window.setInterval(makeTargets, addTargetTime);
 }
 
 startBtn.addEventListener("click", startGame);
