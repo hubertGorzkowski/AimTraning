@@ -50,7 +50,7 @@ function shotOnTarget() {
   document.body.removeChild(this);
   counter++;
   activeElements--;
-  pointsNumber.textContent = `Points: ${counter}`;
+  pointsNumber.textContent = `Points: ${counter}/${pointsToWin}`;
 }
 
 //funkcja wyświetla stan po zakończeniu gry
@@ -89,18 +89,18 @@ function endGame() {
 function startGame() {
   document.querySelector(".menu").remove();
   pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
-  targetsNumber.innerHTML = `Targets: ${activeElements}`;
+  targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
 
   //funcja tworzy cele i ustala warunki wygranej i przegranej
   function makeTargets() {
     const positionY = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
     const positionX = Math.floor(Math.random() * (95 - 1 + 1)) + 1;
 
-    if (counter === pointsToWin) {
+    if (counter === pointsToWin - 1) {
       resultOFGame = 2;
       endGame();
       window.clearInterval(targets);
-    } else if (activeElements > amountOfElements) {
+    } else if (activeElements > amountOfElements - 1) {
       resultOFGame = 1;
       endGame();
       window.clearInterval(targets);
@@ -109,7 +109,7 @@ function startGame() {
       dot.className = "dot";
       document.body.appendChild(dot);
       activeElements++;
-      targetsNumber.textContent = `Targets: ${activeElements}`;
+      targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
       dot.style.top = positionY + "%";
       dot.style.left = positionX + "%";
 
