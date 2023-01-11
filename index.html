@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/c3c5d236ed.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
     <title>Aim Traning</title>
   </head>
@@ -31,12 +35,13 @@
         <button class="menu__btn menu__btn--start">Start</button>
       </div>
       <div class="menu__custom--active">
-        Points to win:
-        <input type="number" placeholder="25" min="1" max="1000" />
-        Maximum number of targets:
-        <input type="number" placeholder="8" min="1" max="1000" />
-        speed of adding targets (in ms):
-        <input type="number" placeholder="500" min="1" max="9999" />
+        <div class="menu__back"><i class="fas fa-times"></i></div>
+        <label for="points">Points to win: </label>
+        <input type="number" id="points" placeholder="25" min="1" max="1000" />
+        <label for="targets">Maximum number of targets: </label>
+        <input type="number" id="targets" placeholder="8" min="1" max="1000" />
+        <label for="speed">Speed of adding targets (in ms): </label>
+        <input type="number" id="speed" placeholder="500" min="1" max="9999" />
       </div>
     </section>
     <section class="game">
