@@ -11,13 +11,18 @@ let counter = 0;
 let activeElements = 0;
 let resultOFGame;
 let pointsToWin = 25;
-let amountOfElements;
-let addTargetTime;
+let amountOfElements = 6;
+let addTargetTime = 600;
 
 const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
 
 difficultyLevelButtons.forEach((button) => {
   const custom = document.querySelector(".menu__custom");
+  const exitCustomSettings = document.querySelector(".fa-times");
+  exitCustomSettings.addEventListener("click", function () {
+    custom.classList.remove("menu__custom--active");
+    difficultyLevelButtons[3].classList.remove("menu__btn--checked");
+  });
   button.addEventListener("click", function () {
     difficultyLevelButtons.forEach((btn) => {
       btn.classList.remove("menu__btn--checked");
@@ -39,7 +44,6 @@ difficultyLevelButtons.forEach((button) => {
         difficultyLevelButtons[3].className == "menu__btn menu__btn--checked"
       ) {
         custom.classList.add("menu__custom--active");
-        console.log("dz", difficultyLevelButtons[3].className);
       }
     }
   });
@@ -87,6 +91,24 @@ function endGame() {
 
 //funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
 function startGame() {
+  difficultyLevelButtons.forEach((btn) => {
+    for (let i = 0; i < difficultyLevelButtons.length; i++) {
+      console.log(i);
+    }
+  });
+  // if (btn.classList == true) {
+  //   console.log("jest");
+  // } else if (btn.classList == false) {
+  //   console.log("nie ma");
+  // const chooseDificultyLevel = document.querySelector(
+  //   ".menu__choose-level"
+  // );
+  // const menuLevels = document.querySelector(".menu__levels");
+  // chooseDificultyLevel.classList.add("menu__payAttention");
+  // menuLevels.classList.add("menu__Attention");
+  // console.log("dz");
+  // }
+
   document.querySelector(".menu").remove();
   pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
   targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
@@ -96,7 +118,7 @@ function startGame() {
     const positionY = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
     const positionX = Math.floor(Math.random() * (95 - 1 + 1)) + 1;
 
-    if (counter === pointsToWin - 1) {
+    if (counter === pointsToWin) {
       resultOFGame = 2;
       endGame();
       window.clearInterval(targets);
