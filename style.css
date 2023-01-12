@@ -58,19 +58,29 @@ body {
   font-size: 28px;
 }
 
-.menu__Attention {
-  border-color: rgb(69, 16, 7);
+.menu__btn {
+  width: 20vw;
+  margin: 0px auto;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #555;
+  font-size: 28px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.menu__payAttention {
-  color: rgb(165, 0, 0);
-  width: 25vw;
-  animation: shakes 3s linear 5;
+.menu__btn--start {
+  margin: 50px auto 30px;
+  font-size: 32px;
+  padding: 15px;
+  background-color: #fff;
+  color: black;
+  animation: shakes 5s infinite linear;
 }
 
 @keyframes shakes {
   0% {
-    transform: translateX(9);
+    transform: translateX(0);
   }
   90% {
     transform: translateX(0);
@@ -105,25 +115,6 @@ body {
   100% {
     transform: translateX(0);
   }
-}
-
-.menu__btn {
-  width: 20vw;
-  margin: 0px auto;
-  padding: 10px 20px;
-  text-transform: uppercase;
-  color: #555;
-  font-size: 28px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.menu__btn--start {
-  margin: 50px auto 30px;
-  font-size: 32px;
-  padding: 15px;
-  background-color: #fff;
-  color: black;
 }
 
 .menu__btn--checked {
