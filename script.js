@@ -16,8 +16,8 @@ let addTargetTime = 600;
 
 const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
 
-//obsługa pop-up'u
 difficultyLevelButtons.forEach((button) => {
+  //obsługa pop-up'u
   const custom = document.querySelector(".menu__custom");
   const exitCustomSettings = document.querySelector(".fa-times");
   exitCustomSettings.addEventListener("click", function () {
@@ -25,13 +25,15 @@ difficultyLevelButtons.forEach((button) => {
     difficultyLevelButtons[3].classList.remove("menu__btn--checked");
     difficultyLevelButtons[1].classList.add("menu__btn--checked");
   });
+
+  //wybieranie buttonu (pojawia sie kolor tła inny)
   button.addEventListener("click", function () {
     difficultyLevelButtons.forEach((btn) => {
       btn.classList.remove("menu__btn--checked");
-      custom.classList.remove("menu__custom--active");
     });
     button.classList.add("menu__btn--checked");
 
+    //w zaleznosci od przycisku kliknieto ustawia reguly gry
     if (difficultyLevelButtons[0] == this) {
       amountOfElements = 8;
       addTargetTime = 800;
@@ -42,11 +44,21 @@ difficultyLevelButtons.forEach((button) => {
       amountOfElements = 5;
       addTargetTime = 500;
     } else if (difficultyLevelButtons[3] == this) {
-      if (
-        difficultyLevelButtons[3].className == "menu__btn menu__btn--checked"
-      ) {
-        custom.classList.add("menu__custom--active");
+      //włączenie pop-up
+      custom.classList.add("menu__custom--active");
+      //pobranie wartosci z custom
+      function takeValues() {
+        const pointToGet = document.getElementById("points");
+        const targetsMax = document.getElementById("targets");
+        const addNewTarget = document.getElementById("speed");
+        pointsToWin = pointToGet.value;
+        console.log(pointsToWin);
+        amountOfElements = targetsMax.value;
+        addTargetTime = addNewTarget.value;
+        startGame();
       }
+      const customBtn = document.querySelector(".menu__btn--custom");
+      customBtn.addEventListener("click", takeValues);
     }
   });
 });
@@ -93,24 +105,6 @@ function endGame() {
 
 //funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
 function startGame() {
-  difficultyLevelButtons.forEach((btn) => {
-    for (let i = 0; i < difficultyLevelButtons.length; i++) {
-      console.log(i);
-    }
-  });
-  // if (btn.classList == true) {
-  //   console.log("jest");
-  // } else if (btn.classList == false) {
-  //   console.log("nie ma");
-  // const chooseDificultyLevel = document.querySelector(
-  //   ".menu__choose-level"
-  // );
-  // const menuLevels = document.querySelector(".menu__levels");
-  // chooseDificultyLevel.classList.add("menu__payAttention");
-  // menuLevels.classList.add("menu__Attention");
-  // console.log("dz");
-  // }
-
   document.querySelector(".menu").remove();
   pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
   targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
@@ -120,7 +114,7 @@ function startGame() {
     const positionY = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
     const positionX = Math.floor(Math.random() * (95 - 1 + 1)) + 1;
 
-    if (counter === pointsToWin) {
+    if (counter == pointsToWin) {
       resultOFGame = 2;
       endGame();
       window.clearInterval(targets);
