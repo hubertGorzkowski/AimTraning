@@ -16,12 +16,14 @@ let addTargetTime = 600;
 
 const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
 
+//obsługa pop-up'u
 difficultyLevelButtons.forEach((button) => {
   const custom = document.querySelector(".menu__custom");
   const exitCustomSettings = document.querySelector(".fa-times");
   exitCustomSettings.addEventListener("click", function () {
     custom.classList.remove("menu__custom--active");
     difficultyLevelButtons[3].classList.remove("menu__btn--checked");
+    difficultyLevelButtons[1].classList.add("menu__btn--checked");
   });
   button.addEventListener("click", function () {
     difficultyLevelButtons.forEach((btn) => {
