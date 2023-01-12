@@ -208,6 +208,10 @@ input:focus {
   background-color: white;
 }
 
+.menu__btn--custom {
+  height: 100px;
+}
+
 .game {
   position: absolute;
   top: 50%;
