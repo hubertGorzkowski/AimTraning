@@ -35,14 +35,14 @@ difficultyLevelButtons.forEach((button) => {
 
     //w zaleznosci od przycisku kliknieto ustawia reguly gry
     if (difficultyLevelButtons[0] == this) {
-      amountOfElements = 8;
+      amountOfElements = 10;
       addTargetTime = 800;
     } else if (difficultyLevelButtons[1] == this) {
-      amountOfElements = 6;
+      amountOfElements = 8;
       addTargetTime = 600;
     } else if (difficultyLevelButtons[2] == this) {
       amountOfElements = 5;
-      addTargetTime = 500;
+      addTargetTime = 600;
     } else if (difficultyLevelButtons[3] == this) {
       //włączenie pop-up
       custom.classList.add("menu__custom--active");
@@ -118,7 +118,7 @@ function startGame() {
       resultOFGame = 2;
       endGame();
       window.clearInterval(targets);
-    } else if (activeElements > amountOfElements - 1) {
+    } else if (activeElements == amountOfElements) {
       resultOFGame = 1;
       endGame();
       window.clearInterval(targets);
