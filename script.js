@@ -96,15 +96,17 @@ function endGame() {
     function statusGame() {
       if (resultOFGame == 2) {
         gameResult.innerText = "You won!";
+        gameResult.classList.add("result__win");
         statisticsOfGame.innerHTML = `
     <p className="result__text">Congratulations, you've won. You've shot down enough targets for ${difficultyLevel} difficulty.</p>
-    <p className="result__playAgain">If you want to play again, press the button.</p>
+    <p className="result__text">If you want to play again, press the button!</p>
     `;
       } else if (resultOFGame == 1) {
         gameResult.innerText = "You lost!";
+        gameResult.classList.add("result__lost");
         statisticsOfGame.innerHTML = `
     <p className="result__text">Unfortunately, you failed to win. Shoot down ${counter}/${pointsToWin} targets on ${difficultyLevel} difficulty.</p>
-    <p className="result__playAgain">If you want to try again, press the button</p>
+    <p className="result__text">If you want to try again, press the button!</p>
     `;
       }
     }

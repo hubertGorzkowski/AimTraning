@@ -261,19 +261,26 @@ input:focus {
   box-shadow: none;
 }
 
+.result__win {
+  text-shadow: 1px 1px 10px green;
+}
+
+.result__lost {
+  text-shadow: 1px 1px 10px red;
+}
+
 .result__statistics {
   width: 60vw;
-  margin: 10vh auto;
-  /* border: 2px solid black; */
+  margin: 15vh auto;
   text-align: center;
   font-size: 32px;
 }
 
-.result__text {
-  background-color: green;
+.result__playAgain {
+  display: block;
+  font-size: 30px;
 }
 
-.result__playAgain {
-  font-size: 28px;
+.result__playAgain:hover {
   background-color: #fff;
 }
