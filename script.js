@@ -9,6 +9,8 @@ const html = document.querySelector("html");
 const pointsNumber = document.querySelector(".game__statistics--points");
 const targetsNumber = document.querySelector(".game__statistics--targets");
 let difficultyLevel = "normal";
+let isStarted = false;
+const custom = document.querySelector(".menu__custom");
 
 let counter = 0;
 let activeElements = 0;
@@ -21,7 +23,6 @@ const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
 
 difficultyLevelButtons.forEach((button) => {
   //obsługa pop-up'u
-  const custom = document.querySelector(".menu__custom");
   const exitCustomSettings = document.querySelector(".fa-times");
   exitCustomSettings.addEventListener("click", function () {
     custom.classList.remove("menu__custom--active");
@@ -111,15 +112,28 @@ function endGame() {
       }
     }
     statusGame();
-    // btn.addEventListener("click", function () {
-    //   window.location.reload();
-    // });
+
+    const resetGame = () => {
+      custom.classList.remove("menu__custom--active");
+      isStarted = false;
+      counter = 0;
+      activeElements = 0;
+      resultOFGame = 0;
+      pointsToWin = 25;
+      amountOfElements = 6;
+      addTargetTime = 600;
+      gameSection.style.zIndex = "-1";
+      result.style.zIndex = "-1";
+      difficultyLevelButtons[1].classList.add("menu__btn--checked");
+    };
+    const playAgainBtn = document.querySelector(".result__playAgain");
+    playAgainBtn.addEventListener("click", resetGame);
   }
   elementsAfterGame();
 }
 
 //funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
-let isStarted = false;
+
 function startGame() {
   if (!isStarted) {
     gameSection.style.zIndex = "0";
