@@ -150,8 +150,8 @@ function startGame() {
 
   //funcja tworzy cele i ustala warunki wygranej i przegranej
   function makeTargets() {
-    const positionY = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
-    const positionX = Math.floor(Math.random() * (95 - 1 + 1)) + 1;
+    const positionY = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
+    const positionX = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
     const dot = document.createElement("div");
     dot.className = "dot";
     if (counter == pointsToWin) {
