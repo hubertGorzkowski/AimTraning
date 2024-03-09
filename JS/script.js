@@ -27,7 +27,13 @@ difficultyLevelButtons.forEach((button) => {
   exitCustomSettings.addEventListener("click", function () {
     custom.classList.remove("menu__custom--active");
     difficultyLevelButtons[3].classList.remove("menu__btn--checked");
-    difficultyLevelButtons[1].classList.add("menu__btn--checked");
+    if (difficultyLevel === "easy") {
+      difficultyLevelButtons[0].classList.add("menu__btn--checked");
+    } else if (difficultyLevel === "normal") {
+      difficultyLevelButtons[1].classList.add("menu__btn--checked");
+    } else if (difficultyLevel === "hard") {
+      difficultyLevelButtons[2].classList.add("menu__btn--checked");
+    }
   });
 
   //wybieranie buttonu (pojawia sie kolor tła inny)
@@ -60,7 +66,6 @@ difficultyLevelButtons.forEach((button) => {
         const addNewTarget = document.getElementById("speed");
         difficultyLevel = "custom";
         pointsToWin = pointToGet.value;
-        console.log(pointsToWin);
         amountOfElements = targetsMax.value;
         addTargetTime = addNewTarget.value;
         startGame();
@@ -99,15 +104,15 @@ function endGame() {
         gameResult.innerText = "You won!";
         gameResult.classList.add("result__win");
         statisticsOfGame.innerHTML = `
-    <p className="result__text">Congratulations, you've won. You've shot down enough targets for ${difficultyLevel} difficulty.</p>
-    <p className="result__text">If you want to play again, press the button!</p>
+    <p class="result__text">Congratulations, you've won. You've shot down enough targets for ${difficultyLevel} difficulty.</p>
+    <p class="result__text">If you want to play again, press the button!</p>
     `;
       } else if (resultOFGame == 1) {
         gameResult.innerText = "You lost!";
         gameResult.classList.add("result__lost");
         statisticsOfGame.innerHTML = `
-    <p className="result__text">Unfortunately, you failed to win. Shoot down ${counter}/${pointsToWin} targets on ${difficultyLevel} difficulty.</p>
-    <p className="result__text">If you want to try again, press the button!</p>
+    <p class="result__text">Unfortunately, you failed to win. Shoot down ${counter}/${pointsToWin} targets on ${difficultyLevel} difficulty.</p>
+    <p class="result__text">If you want to try again, <span class="result__span">press the button!</span></p>
     `;
       }
     }

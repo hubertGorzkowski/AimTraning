@@ -72,7 +72,6 @@ body {
   margin: 50px auto 30px;
   font-size: 32px;
   padding: 15px;
-  background-color: #fff;
   color: black;
   animation: shakes 5s infinite linear;
 }
@@ -183,21 +182,21 @@ body {
 
 label,
 input {
+  flex-basis: 80%;
   align-self: center;
   font-size: 22px;
-  padding: 10px;
+  padding: 10px 0;
   border: 2px solid black;
 }
 
 label {
-  flex-basis: 70%;
   text-align: center;
   border-right: none;
   cursor: pointer;
 }
 
 input {
-  flex-basis: 10%;
+  flex-basis: 5%;
   text-align: center;
   border-left: none;
   background-color: #eee;
@@ -274,6 +273,10 @@ input:focus {
   margin: 15vh auto;
   text-align: center;
   font-size: 32px;
+}
+
+p span.result__span {
+  font-size: 38px;
 }
 
 .result__playAgain {
