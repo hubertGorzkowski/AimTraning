@@ -1,39 +1,49 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
     <meta
       name="keywords"
-      content="trening, aim, dots, csgo, valorant, gry komputerowe"
-    />
-    <link rel="icon" href="aimPicture.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      content="trening, aim, dots, csgo, valorant, gry komputerowe" />
+    <link
+      rel="icon"
+      href="aimPicture.png" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <script
       src="https://kit.fontawesome.com/c3c5d236ed.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="style.css" />
+      crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="styles/style.css" />
     <title>Aim Traning</title>
   </head>
 
   <body>
-    <section class="menu">
+    <main class="menu">
       <h1 class="menu__title title">Check your aim!</h1>
-      <div class="menu__levels">
+      <section class="menu__levels">
         <h2 class="menu__choose-level">Choose a difficulty level</h2>
         <button class="menu__btn">Easy</button>
         <button class="menu__btn menu__btn--checked">Medium</button>
         <button class="menu__btn">Hard</button>
         <button class="menu__btn">Custom</button>
         <button class="menu__btn menu__btn--start">Play</button>
-      </div>
+      </section>
       <div class="menu__custom">
         <div class="menu__back"><i class="fas fa-times"></i></div>
         <h2 class="menu__info">Custom settings</h2>
@@ -41,38 +51,32 @@
         <input
           type="number"
           id="points"
-          placeholder="25"
           min="1"
           max="1000"
-          value="25"
-        />
+          value="25" />
         <label for="targets">Maximum number of targets: </label>
         <input
           type="number"
           id="targets"
-          placeholder="8"
           min="1"
           max="1000"
-          value="8"
-        />
+          value="8" />
         <label for="speed">Speed of adding new targets (in ms): </label>
         <input
           type="number"
           id="speed"
-          placeholder="500"
           min="1"
           max="9999"
-          value="500"
-        />
+          value="500" />
         <button class="menu__btn menu__btn--start menu__btn--custom">
           Play
         </button>
       </div>
-    </section>
+    </main>
     <section class="game">
       <div class="game__wrapper">
-        <h3 class="game__statistics game__statistics--points"></h3>
-        <h3 class="game__statistics game__statistics--targets"></h3>
+        <p class="game__statistics game__statistics--points"></h3>
+        <p class="game__statistics game__statistics--targets"></h3>
       </div>
     </section>
     <section class="result">
@@ -82,6 +86,6 @@
         Play again!
       </button>
     </section>
-    <script src="script.js"></script>
+    <script src="JS/script.js"></script>
   </body>
 </html>
