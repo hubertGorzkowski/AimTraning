@@ -4,4 +4,16 @@ Dodać animacje podczas zmieniania poziomu trudnosci
 
 Dodać inne style dla przycisku play
 
-przetestowac poziom łatwy bo cos nie dzialalo wygranie. pozniej sie dało, zobaczyc czy custom sie dobrze resetuje po zmianie poziomu trudności
+przetestowac poziom łatwy bo cos nie dzialalo wygranie. pozniej sie dało,
+zobaczyc czy custom sie dobrze resetuje po zmianie poziomu trudności
+
+Zmiana wyglądu targetów
+
+Zmiana ekranu po wygraniu i przegraniu
+
+Dodanie przycisku zagraj ponownie czyli na tych samych ustawieniach co były wczesniej,
+i przycisku wroc do wyboru poziomu trudnosci
+
+Pokazuje ze wygrales dopiero po chwili jak zdobyles wystarczajaco liczbe punktow,
+nie dziala to plynnie.
+
