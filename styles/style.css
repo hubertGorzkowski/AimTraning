@@ -174,7 +174,7 @@ body {
 
 .menu__back {
   position: absolute;
-  top: 0%;
+  top: 2%;
   right: 5%;
   font-size: 50px;
   cursor: pointer;
@@ -265,14 +265,15 @@ input:focus {
   text-transform: uppercase;
   font-size: 70px;
   box-shadow: none;
+  text-shadow: 1px 1px 2px black;
 }
 
 .result__win {
-  text-shadow: 1px 1px 10px green;
+  text-shadow: rgb(1, 64, 1);
 }
 
 .result__lost {
-  text-shadow: 1px 1px 10px red;
+  color: rgb(200, 3, 3);
 }
 
 .result__statistics {
