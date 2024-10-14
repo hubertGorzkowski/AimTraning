@@ -241,8 +241,8 @@ input:focus {
   position: absolute;
   width: 55px;
   height: 55px;
-  border: 4px solid black;
-  background-color: rgb(255, 255, 255);
+  border: 3px solid black;
+  background-color: rgb(120, 17, 17);
   border-radius: 50%;
 }
 
