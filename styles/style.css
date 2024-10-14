@@ -28,6 +28,7 @@ body {
 .menu__title,
 .title {
   text-align: center;
+  letter-spacing: 8px;
   font-size: 55px;
   margin: 0 auto;
   padding: 8vh 10px 10px;
@@ -48,6 +49,7 @@ body {
   margin: 8vh auto;
   padding: 20px;
   border: 5px solid black;
+  box-shadow: 1px 1px 5px black;
 }
 
 .menu__choose-level {
@@ -62,8 +64,9 @@ body {
   margin: 0px auto;
   padding: 10px 20px;
   text-transform: uppercase;
-  color: #555;
+  color: #333;
   font-size: 28px;
+  letter-spacing: 1px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -72,8 +75,10 @@ body {
   margin: 50px auto 30px;
   font-size: 32px;
   padding: 15px;
-  color: black;
+  color: rgb(11, 9, 9);
+  border: 2px solid black;
   animation: shakes 5s infinite linear;
+  transition: 0.2s;
 }
 
 @keyframes shakes {
@@ -121,7 +126,8 @@ body {
     rgb(43, 128, 157),
     rgb(199, 109, 109)
   );
-  color: #fff;
+  letter-spacing: 3px;
+  color: #ffffff;
 }
 
 .menu__btn:hover {
@@ -137,9 +143,10 @@ body {
   background-image: linear-gradient(
     to right,
     rgb(255, 255, 255),
-    rgb(224, 224, 224)
+    rgb(255, 255, 255)
   );
   color: black;
+  letter-spacing: 8px;
 }
 
 .menu__custom {
