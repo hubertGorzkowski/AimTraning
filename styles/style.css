@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  transition: 1s 0.5s;
+  transition: 0.5s 1s;
   overflow: hidden;
 }
 
@@ -25,60 +25,84 @@ body {
   );
 }
 
-.menu__title,
-.title {
-  text-align: center;
-  letter-spacing: 8px;
-  font-size: 55px;
+.menu__title {
   margin: 0 auto;
   padding: 8vh 10px 10px;
   width: 60vw;
+  font-size: 55px;
+  text-align: center;
   color: rgb(11, 9, 9);
+  letter-spacing: 8px;
   box-shadow: 5px 5px 2px 1px;
 }
 
 .menu__levels {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  width: 35vw;
+  margin: 8vh auto;
+  padding: 20px;
   background-image: linear-gradient(
     to top right,
     rgb(43, 128, 157),
     rgb(150, 150, 199)
   );
-  width: 35vw;
-  margin: 8vh auto;
-  padding: 20px;
   border: 5px solid black;
   box-shadow: 1px 1px 5px black;
 }
 
-.menu__choose-level {
+.menu__wrapper {
   text-align: center;
+}
+
+.menu__choose-level {
   margin: 15px auto 50px auto;
   padding: 5px;
   font-size: 28px;
+  text-align: center;
+  color: rgb(11, 9, 9);
 }
 
 .menu__btn {
   width: 20vw;
   margin: 0px auto;
   padding: 10px 20px;
-  text-transform: uppercase;
-  color: #333;
   font-size: 28px;
+  color: #333;
+  text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.menu__btn--start {
+.menu__btn:hover {
+  background-image: linear-gradient(
+    to right,
+    rgb(43, 128, 157),
+    rgb(199, 109, 109)
+  );
+  color: #fff;
+}
+
+.menu__btn--play {
   margin: 50px auto 30px;
-  font-size: 32px;
   padding: 15px;
-  color: rgb(11, 9, 9);
+  font-size: 32px;
   border: 2px solid black;
   animation: shakes 5s infinite linear;
   transition: 0.2s;
+}
+
+.menu__btn--play:hover {
+  background-image: linear-gradient(
+    to right,
+    rgb(255, 255, 255),
+    rgb(255, 255, 255)
+  );
+  color: black;
+  text-shadow: 0px 0px 1px #050505;
+  letter-spacing: 8px;
 }
 
 @keyframes shakes {
@@ -130,34 +154,15 @@ body {
   color: #ffffff;
 }
 
-.menu__btn:hover {
-  background-image: linear-gradient(
-    to right,
-    rgb(43, 128, 157),
-    rgb(199, 109, 109)
-  );
-  color: #fff;
-}
-
-.menu__btn--start:hover {
-  background-image: linear-gradient(
-    to right,
-    rgb(255, 255, 255),
-    rgb(255, 255, 255)
-  );
-  color: black;
-  letter-spacing: 8px;
-}
-
 .menu__custom {
   position: absolute;
   top: 50%;
-  right: -21vw;
+  right: -50%;
   transform: translate(50%, -50%);
   height: 90vh;
   width: 40vw;
   padding: 25px;
-  box-shadow: 0 0 20px 2px black;
+  box-shadow: 0 0 20px 4px rgb(11, 9, 9) k;
   background-image: linear-gradient(
     to top right,
     rgb(43, 128, 157),
@@ -165,7 +170,9 @@ body {
   );
   display: flex;
   flex-wrap: wrap;
-  transition: 0.2s;
+  justify-content: center;
+  align-content: space-around;
+  transition: 0.3s;
 }
 
 .menu__custom--active {
@@ -182,23 +189,23 @@ body {
 
 .menu__info {
   flex-basis: 100%;
-  text-align: center;
-  font-size: 36px;
   align-self: center;
+  text-align: center;
+  font-size: 40px;
+  letter-spacing: 2px;
 }
 
 label,
 input {
   flex-basis: 80%;
   align-self: center;
-  font-size: 22px;
   padding: 10px 0;
+  font-size: 25px;
   border: 2px solid black;
 }
 
 label {
   text-align: center;
-  border-right: none;
   cursor: pointer;
 }
 
@@ -207,14 +214,28 @@ input {
   text-align: center;
   border-left: none;
   background-color: #eee;
+  transition: 0.2s;
 }
 
 input:focus {
   background-color: white;
+  letter-spacing: 2px;
 }
 
-.menu__btn--custom {
-  height: 100px;
+.menu__saveSettingsBtn {
+  height: 80px;
+  font-size: 30px;
+  border: 2px solid black;
+}
+
+.menu__saveSettingsBtn:hover {
+  background-image: linear-gradient(
+    to right,
+    rgb(255, 255, 255),
+    rgb(255, 255, 255)
+  );
+  color: black;
+  letter-spacing: 5px;
 }
 
 .game {
