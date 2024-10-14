@@ -37,57 +37,66 @@
     <main class="menu">
       <h1 class="menu__title title">Practice aiming!</h1>
       <section class="menu__levels">
-        <h2 class="menu__choose-level">Choose a difficulty level</h2>
-        <button class="menu__btn">Easy</button>
-        <button class="menu__btn menu__btn--checked">Medium</button>
-        <button class="menu__btn">Hard</button>
-        <button class="menu__btn">Custom</button>
-        <button class="menu__btn menu__btn--start">Play</button>
+        <div class="menu__wrapper">
+          <h2 class="menu__choose-level">Choose a difficulty level</h2>
+          <button class="menu__btn">Easy</button>
+          <button class="menu__btn menu__btn--checked">Medium</button>
+          <button class="menu__btn">Hard</button>
+          <button class="menu__btn">Custom</button>
+        </div>
+        <button class="menu__play">Play</button>
       </section>
       <div class="menu__custom">
         <div class="menu__back"><i class="fas fa-times"></i></div>
         <h2 class="menu__info">Custom settings</h2>
-        <label for="points" title="Set the number of points needed to win">Points to win: </label>
+        <label
+          for="points"
+          title="Set the number of points needed to win"
+          >Points to win:
+        </label>
         <input
           type="number"
           id="points"
           min="1"
           max="1000"
           value="25" />
-        <label for="targets" title="Choose the number of how many targets can be at once. If this number is exceeded - you lose">Maximum number of targets: </label>
+        <label
+          for="targets"
+          title="Choose the number of how many targets can be at once. If this number is exceeded - you lose"
+          >Maximum number of targets:
+        </label>
         <input
           type="number"
           id="targets"
           min="1"
           max="1000"
           value="8" />
-        <label for="speed" title="Set how quickly the next target should be added">Speed of adding a new target (in ms): </label>
+        <label
+          for="speed"
+          title="Set how quickly the next target should be added"
+          >Speed of adding a new target (in ms):
+        </label>
         <input
           type="number"
           id="speed"
           min="1"
           max="9999"
           value="500" />
-        <button class="menu__btn menu__btn--start menu__btn--custom">
-          Play
-        </button>
+        <button class="menu__saveSettingsBtn">Save setting</button>
       </div>
     </main>
     <section class="game">
-      <div class="game__wrapper">
-        <p class="game__statistics game__statistics--points"></h3>
-        <p class="game__statistics game__statistics--targets"></h3>
+      <div class="game__statisticsWrapper">
+        <h2 class="game__statistics game__statistics--points"></h2>
+        <h2 class="game__statistics game__statistics--targets"></h2>
+        <h2 class="game__statistics game__statistics--missShots"></h2>
       </div>
     </section>
     <section class="result">
-      <h1 class="result__title title"></h1>
+      <h2 class="result__title title"></h2>
       <div class="result__statistics"></div>
-      <button class="result__playAgain menu__btn">
-        Play again!
-      </button>
-      <button class="result__backToMenu menu__btn">
-        Go to menu
-      </button>
+      <button class="result__backToMenu menu__btn">Go to menu</button>
+      <button class="result__playAgain menu__btn">Play again!</button>
     </section>
     <script src="JS/script.js"></script>
   </body>
