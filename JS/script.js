@@ -1,7 +1,7 @@
 document.onselectstart = function () {
   return false;
 };
-const startBtn = document.body.querySelector(".menu__btn--start");
+const startBtn = document.body.querySelector(".menu__btn--play");
 const menu = document.body.querySelector(".menu");
 const gameSection = document.querySelector(".game");
 const result = document.querySelector(".result");
@@ -11,6 +11,7 @@ const targetsNumber = document.querySelector(".game__statistics--targets");
 let difficultyLevel = "normal";
 let isStarted = false;
 const custom = document.querySelector(".menu__custom");
+const exitCustomSettings = document.querySelector(".fa-times");
 
 let counter = 0;
 let activeElements = 0;
@@ -19,62 +20,58 @@ let pointsToWin = 25;
 let amountOfElements = 6;
 let addTargetTime = 600;
 
-const difficultyLevelButtons = [...document.querySelectorAll(".menu__btn")];
+const difficultyLevelButtons = [
+  ...document.querySelectorAll(".menu__wrapper .menu__btn"),
+];
 
-difficultyLevelButtons.forEach((button) => {
-  //obsługa pop-up'u
-  const exitCustomSettings = document.querySelector(".fa-times");
-  exitCustomSettings.addEventListener("click", function () {
-    custom.classList.remove("menu__custom--active");
-    difficultyLevelButtons[3].classList.remove("menu__btn--checked");
-    if (difficultyLevel === "easy") {
-      difficultyLevelButtons[0].classList.add("menu__btn--checked");
-    } else if (difficultyLevel === "normal") {
-      difficultyLevelButtons[1].classList.add("menu__btn--checked");
-    } else if (difficultyLevel === "hard") {
-      difficultyLevelButtons[2].classList.add("menu__btn--checked");
-    }
+//obsługa wyjscia z custom
+const exitSettings = () => {
+  custom.classList.remove("menu__custom--active");
+};
+exitCustomSettings.addEventListener("click", exitSettings);
+
+//zmiana wybranego trybu gry
+const chooseDifficultyLevel = (button) => {
+  difficultyLevelButtons.forEach((btn) => {
+    btn.classList.remove("menu__btn--checked");
   });
 
-  //wybieranie buttonu (pojawia sie kolor tła inny)
-  button.addEventListener("click", function () {
-    difficultyLevelButtons.forEach((btn) => {
-      btn.classList.remove("menu__btn--checked");
-    });
-    button.classList.add("menu__btn--checked");
+  button.target.classList.add("menu__btn--checked");
 
-    //w zaleznosci od przycisku kliknieto ustawia reguly gry
-    if (difficultyLevelButtons[0] == this) {
-      difficultyLevel = "easy";
-      amountOfElements = 10;
-      addTargetTime = 800;
-    } else if (difficultyLevelButtons[1] == this) {
-      difficultyLevel = "normal";
-      amountOfElements = 8;
-      addTargetTime = 600;
-    } else if (difficultyLevelButtons[2] == this) {
-      difficultyLevel = "hard";
-      amountOfElements = 5;
-      addTargetTime = 600;
-    } else if (difficultyLevelButtons[3] == this) {
-      //włączenie pop-up
-      custom.classList.add("menu__custom--active");
-      //pobranie wartosci z custom
-      function takeValues() {
-        const pointToGet = document.getElementById("points");
-        const targetsMax = document.getElementById("targets");
-        const addNewTarget = document.getElementById("speed");
-        difficultyLevel = "custom";
-        pointsToWin = pointToGet.value;
-        amountOfElements = targetsMax.value;
-        addTargetTime = addNewTarget.value;
-        startGame();
-      }
-      const customBtn = document.querySelector(".menu__btn--custom");
-      customBtn.addEventListener("click", takeValues);
-    }
-  });
-});
+  // if (difficultyLevelButtons[0] == this) {
+  //   difficultyLevel = "easy";
+  //   amountOfElements = 10;
+  //   addTargetTime = 800;
+  // } else if (difficultyLevelButtons[1] == this) {
+  //   difficultyLevel = "normal";
+  //   amountOfElements = 8;
+  //   addTargetTime = 600;
+  // } else if (difficultyLevelButtons[2] == this) {
+  //   difficultyLevel = "hard";
+  //   amountOfElements = 5;
+  //   addTargetTime = 600;
+  // } else if (difficultyLevelButtons[3] == this) {
+  //   //włączenie pop-up
+  //   custom.classList.add("menu__custom--active");
+  //   //pobranie wartosci z custom
+  //   function takeValues() {
+  //     const pointToGet = document.getElementById("points");
+  //     const targetsMax = document.getElementById("targets");
+  //     const addNewTarget = document.getElementById("speed");
+  //     difficultyLevel = "custom";
+  //     pointsToWin = pointToGet.value;
+  //     amountOfElements = targetsMax.value;
+  //     addTargetTime = addNewTarget.value;
+  //     startGame();
+  //   }
+  //   const customBtn = document.querySelector(".menu__btn--custom");
+  //   customBtn.addEventListener("click", takeValues);
+  // }
+};
+
+difficultyLevelButtons.forEach((button) =>
+  button.addEventListener("click", chooseDifficultyLevel)
+);
 
 //funkcja wykrywa czy uzytkownik trafil w cel i zwieksza licznik
 function shotOnTarget() {
