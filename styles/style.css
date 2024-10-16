@@ -178,7 +178,7 @@ body {
 
 .menu__custom--active {
   right: 50vw;
-  display: block;
+  display: flex;
 }
 
 .menu__back {
