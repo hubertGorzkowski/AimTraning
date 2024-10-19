@@ -271,6 +271,33 @@ input:focus {
   transition-delay: 3s;
 }
 
+div.countingToStart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 70px;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  animation: countdownAnimation 1s 5 forwards;
+}
+
+@keyframes countdownAnimation {
+  0% {
+    font-size: 0px;
+    opacity: 0;
+  }
+
+  50% {
+    font-size: 90px;
+    opacity: 1;
+  }
+
+  100% {
+    font-size: 0px;
+    opacity: 0;
+  }
+}
+
 .game.show {
   z-index: 1;
 }
