@@ -4,6 +4,7 @@ document.onselectstart = function () {
 const startBtn = document.body.querySelector(".menu__btn--play");
 const menu = document.body.querySelector("main.menu");
 const gameSection = document.querySelector(".game");
+const statisticsWrapper = document.querySelector(".game__statisticsWrapper");
 const result = document.querySelector(".result");
 const html = document.querySelector("html");
 const pointsNumber = document.querySelector(".game__statistics--points");
@@ -164,6 +165,10 @@ const countdown = () => {
       div.innerText = countdownArr[arrayIndex];
       arrayIndex++;
       setTimeout(countdownTimeout, 1000);
+    }
+
+    if (arrayIndex === countdownArr.length - 1) {
+      statisticsWrapper.classList.add("showStats");
     }
   };
   setTimeout(countdownTimeout, 1000);
