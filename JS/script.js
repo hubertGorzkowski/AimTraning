@@ -155,10 +155,10 @@ const countdown = () => {
   const countdownTimeout = () => {
     if (arrayIndex === countdownArr.length) {
       setTimeout(function () {
-        arrayIndex = 0;
         div.remove();
+        arrayIndex = 0;
         return;
-      }, 3000);
+      }, 500);
     } else {
       div.innerText = countdownArr[arrayIndex];
       arrayIndex++;
