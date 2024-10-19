@@ -145,6 +145,7 @@ function endGame() {
   elementsAfterGame();
 }
 
+//odliczanie przed rozpoczeciem gry
 const countdown = () => {
   const countdownArr = ["3", "2", "1", "Shoot!"];
   const div = document.createElement("div");
@@ -170,6 +171,10 @@ const countdown = () => {
 
 //funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
 function startGame() {
+  menu.style.pointerEvents = "none";
+  setTimeout(function () {
+    menu.style.pointerEvents = "auto";
+  }, 4000);
   if (!isStarted) {
     menu.classList.add("hide");
     gameSection.classList.add("show");
@@ -177,15 +182,11 @@ function startGame() {
     setTimeout(countdown, 1500);
   } else {
     isStarted = !isStarted;
-    console.log(isStarted);
     menu.classList.remove("hide");
   }
 
-  // gameSection.style.zIndex = "0";
-  // isStarted = true;
-
-  // pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
-  // targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
+  pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
+  targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
 
   // //funcja tworzy cele i ustala warunki wygranej i przegranej
   // function makeTargets() {
