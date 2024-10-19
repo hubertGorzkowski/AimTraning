@@ -2,7 +2,7 @@ document.onselectstart = function () {
   return false;
 };
 const startBtn = document.body.querySelector(".menu__btn--play");
-const menu = document.body.querySelector(".menu");
+const menu = document.body.querySelector("main.menu");
 const gameSection = document.querySelector(".game");
 const result = document.querySelector(".result");
 const html = document.querySelector("html");
@@ -35,6 +35,7 @@ const exitSettings = () => {
 };
 exitCustomSettings.addEventListener("click", exitSettings);
 
+//pobranie zasad gry z custom
 function takeValues() {
   difficultyLevel = "custom";
   pointsToWin = pointToGet.value;
@@ -43,18 +44,22 @@ function takeValues() {
   exitSettings();
 }
 
+//ustawienia poziomów trudności
 const gameRules = (button) => {
   const clickedButton = button.target;
   if (difficultyLevelButtons[0] == clickedButton) {
     difficultyLevel = "easy";
+    pointsToWin = 20;
     amountOfElements = 10;
     addTargetTime = 800;
   } else if (difficultyLevelButtons[1] == clickedButton) {
     difficultyLevel = "normal";
+    pointsToWin = 25;
     amountOfElements = 8;
     addTargetTime = 600;
   } else if (difficultyLevelButtons[2] == clickedButton) {
     difficultyLevel = "hard";
+    pointsToWin = 30;
     amountOfElements = 5;
     addTargetTime = 600;
   } else if (difficultyLevelButtons[3] == clickedButton) {
@@ -140,43 +145,74 @@ function endGame() {
   elementsAfterGame();
 }
 
-//funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
+const countdown = () => {
+  const countdownArr = ["3", "2", "1", "Shoot!"];
+  const div = document.createElement("div");
+  gameSection.appendChild(div);
+  div.classList.add("countingToStart");
 
+  let arrayIndex = 0;
+  const countdownTimeout = () => {
+    if (arrayIndex === countdownArr.length) {
+      setTimeout(function () {
+        arrayIndex = 0;
+        div.remove();
+        return;
+      }, 3000);
+    } else {
+      div.innerText = countdownArr[arrayIndex];
+      arrayIndex++;
+      setTimeout(countdownTimeout, 1000);
+    }
+  };
+  setTimeout(countdownTimeout, 1000);
+};
+
+//funkcja zaczyna grę. Znika początkowy wygląd, pojawiaja się counter
 function startGame() {
   if (!isStarted) {
-    gameSection.style.zIndex = "0";
-    isStarted = true;
+    menu.classList.add("hide");
+    gameSection.classList.add("show");
+    isStarted = !isStarted;
+    setTimeout(countdown, 1500);
+  } else {
+    isStarted = !isStarted;
+    console.log(isStarted);
+    menu.classList.remove("hide");
   }
 
-  pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
-  targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
+  // gameSection.style.zIndex = "0";
+  // isStarted = true;
 
-  //funcja tworzy cele i ustala warunki wygranej i przegranej
-  function makeTargets() {
-    const positionY = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
-    const positionX = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
-    const dot = document.createElement("div");
-    dot.className = "dot";
-    if (counter == pointsToWin) {
-      resultOFGame = 2;
-      endGame();
-      window.clearInterval(targets);
-    } else if (activeElements == amountOfElements) {
-      resultOFGame = 1;
-      endGame();
-      window.clearInterval(targets);
-    } else {
-      gameSection.appendChild(dot);
-      activeElements++;
-      targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
-      dot.style.top = positionY + "%";
-      dot.style.left = positionX + "%";
+  // pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
+  // targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
 
-      dot.addEventListener("click", shotOnTarget);
-    }
-  }
+  // //funcja tworzy cele i ustala warunki wygranej i przegranej
+  // function makeTargets() {
+  //   const positionY = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
+  //   const positionX = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
+  //   const dot = document.createElement("div");
+  //   dot.className = "dot";
+  //   if (counter == pointsToWin) {
+  //     resultOFGame = 2;
+  //     endGame();
+  //     window.clearInterval(targets);
+  //   } else if (activeElements == amountOfElements) {
+  //     resultOFGame = 1;
+  //     endGame();
+  //     window.clearInterval(targets);
+  //   } else {
+  //     gameSection.appendChild(dot);
+  //     activeElements++;
+  //     targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
+  //     dot.style.top = positionY + "%";
+  //     dot.style.left = positionX + "%";
 
-  const targets = window.setInterval(makeTargets, addTargetTime);
+  //     dot.addEventListener("click", shotOnTarget);
+  //   }
+  // }
+
+  // const targets = window.setInterval(makeTargets, addTargetTime);
 }
 
 startBtn.addEventListener("click", startGame);
