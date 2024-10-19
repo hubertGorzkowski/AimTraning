@@ -278,7 +278,7 @@ div.countingToStart {
   font-size: 70px;
   transform: translate(-50%, -50%);
   text-transform: uppercase;
-  animation: countdownAnimation 1s 5 forwards;
+  animation: countdownAnimation 1s 4 1s forwards;
 }
 
 @keyframes countdownAnimation {
