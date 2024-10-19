@@ -260,17 +260,6 @@ input:focus {
   letter-spacing: 5px;
 }
 
-.game {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(43, 128, 157);
-  z-index: -1;
-  transition-delay: 3s;
-}
-
 div.countingToStart {
   position: absolute;
   top: 50%;
@@ -298,18 +287,48 @@ div.countingToStart {
   }
 }
 
+.game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(43, 128, 157);
+  z-index: -1;
+  transition: 1s 2s;
+}
+
 .game.show {
   z-index: 1;
 }
 
-.game__wrapper {
+.game__statisticsWrapper {
   position: absolute;
-  top: 2%;
-  left: 2%;
-  font-size: 20px;
-  color: white;
+  top: 1%;
+  left: 1%;
+  font-size: 14px;
+  color: rgb(11, 9, 9);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  opacity: 0;
+}
+
+.game__statisticsWrapper.showStats {
+  animation: showGameAnimation 1 3s forwards;
+}
+
+@keyframes showGameAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.game__statisticsWrapper .game__statistics {
+  margin: 5px;
 }
 
 .dot {
@@ -321,7 +340,7 @@ div.countingToStart {
   border-radius: 50%;
 }
 
-.result {
+/* .result {
   position: absolute;
   top: 0;
   left: 0;
@@ -334,9 +353,9 @@ div.countingToStart {
     rgb(43, 128, 157)
   );
   z-index: -2;
-}
+} */
 
-.result__title {
+/* .result__title {
   text-transform: uppercase;
   font-size: 70px;
   box-shadow: none;
@@ -369,4 +388,4 @@ p span.result__span {
 
 .result__playAgain:hover {
   background-color: #fff;
-}
+} */
