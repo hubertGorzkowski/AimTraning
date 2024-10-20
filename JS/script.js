@@ -6,7 +6,6 @@ const menu = document.body.querySelector("main.menu");
 const gameSection = document.querySelector(".game");
 const statisticsWrapper = document.querySelector(".game__statisticsWrapper");
 const result = document.querySelector(".result");
-const html = document.querySelector("html");
 const pointsNumber = document.querySelector(".game__statistics--points");
 const targetsNumber = document.querySelector(".game__statistics--targets");
 let difficultyLevel = "normal";
@@ -22,6 +21,7 @@ let pointsToWin = 25;
 let amountOfElements = 6;
 let addTargetTime = 600;
 let onOffInterval = false;
+const clickedBtnsIndex = [1];
 let targets;
 
 let pointToGet = document.getElementById("points");
@@ -33,10 +33,16 @@ const difficultyLevelButtons = [
 ];
 
 //obsługa wyjscia z custom
-const exitSettings = () => {
+const exitSettingsUsingX = () => {
+  const index = clickedBtnsIndex[clickedBtnsIndex.length - 2];
+  const lastButton = difficultyLevelButtons[index];
+  difficultyLevelButtons.forEach((btn) => {
+    btn.classList.remove("menu__btn--checked");
+  });
+  lastButton.classList.add("menu__btn--checked");
   custom.classList.remove("menu__custom--active");
 };
-exitCustomSettings.addEventListener("click", exitSettings);
+exitCustomSettings.addEventListener("click", exitSettingsUsingX);
 
 //pobranie zasad gry z custom
 function takeValues() {
@@ -44,7 +50,7 @@ function takeValues() {
   pointsToWin = pointToGet.value;
   amountOfElements = targetsMax.value;
   addTargetTime = addNewTarget.value;
-  exitSettings();
+  console.log(pointsToWin, amountOfElements, addTargetTime);
 }
 
 //ustawienia poziomów trudności
@@ -74,12 +80,12 @@ const gameRules = (button) => {
 
 //zmiana wybranego trybu gry
 const chooseDifficultyLevel = (button) => {
+  const lastClickedBtn = difficultyLevelButtons.indexOf(button.target);
+  clickedBtnsIndex.push(lastClickedBtn);
   difficultyLevelButtons.forEach((btn) => {
     btn.classList.remove("menu__btn--checked");
   });
-
   button.target.classList.add("menu__btn--checked");
-
   gameRules(button);
 };
 
@@ -173,12 +179,14 @@ const countdown = () => {
 
     if (arrayIndex === countdownArr.length - 1) {
       statisticsWrapper.classList.add("showStats");
+      pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
+      targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
     }
   };
   setTimeout(countdownTimeout, 1000);
 };
 
-//funcja tworzy cele i kontroluje kiedy jest przegrana i wygrana
+//funcja tworzy i dodaje cele i kontroluje kiedy jest przegrana i wygrana
 function makeTargets() {
   const positionY = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
   const positionX = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
@@ -220,13 +228,11 @@ function startGame() {
     menu.classList.add("hide");
     gameSection.classList.add("show");
     isStarted = !isStarted;
-    setTimeout(countdown, 1500);
+    setTimeout(countdown, 1000);
   } else {
     isStarted = !isStarted;
     menu.classList.remove("hide");
   }
-  pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
-  targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
 }
 
 startBtn.addEventListener("click", startGame);
