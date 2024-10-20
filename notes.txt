@@ -1,19 +1,26 @@
-Po wybraniu custom dalej jest ustawione custom.
+Problem z custom
+- zobaczyć czy custom prawidłowo zczytuje wprowadzone wartości
+- zobaczyć dlaczego nie działają min i max wartości w custom
+- po zmianie w custom pojawia sie kilka targetów jednoczesnie //mozliwe ze naprawione
+- po zmianie w custom nie da wie wygrac nawet jak zdobedzie sie odpowienia ilosc punktow
+Wchodzimy w custom settings
+- jak klikamy save settings to nam wychodzi i zapisuje ustawienia i zostaje zaznaczony tryb custom
 
-Dodać animacje podczas zmieniania poziomu trudnosci
 
-Dodać inne style dla przycisku play
+W trakcie gry:
+- problem ze zliczaniem targetów, które są wyświetlane na ekranie, prawdopodobnie informacja ta aktualizuje
+się po kliknięciu w kropkę, a pomiędzy trafieniem w cel może zostać dodane np. 3 inne ale nie wiadomo czy to
+tak działa więc sprawdzić
 
-przetestowac poziom łatwy bo cos nie dzialalo wygranie. pozniej sie dało,
-zobaczyc czy custom sie dobrze resetuje po zmianie poziomu trudności
+Po zakończeniu gry:
+- zmiana ekranu po wygraniu i przegraniu
+- dodanie przycisku zagraj ponownie (czyli na tych samych ustawieniach co były wczesniej)
+- dodanie przycisku wroc do wyboru poziomu trudnosci
 
-Zmiana wyglądu targetów
 
-Zmiana ekranu po wygraniu i przegraniu
-
-Dodanie przycisku zagraj ponownie czyli na tych samych ustawieniach co były wczesniej,
-i przycisku wroc do wyboru poziomu trudnosci
-
+Optymalizacja:
 Pokazuje ze wygrales dopiero po chwili jak zdobyles wystarczajaco liczbe punktow,
-nie dziala to plynnie.
-
+nie dziala to plynnie. Tak samo jest z przegraną.
+- jest tak dlatego że jest to sprawdzane w if przy dodawaniu celu, a cel jest dodawany np. co 1s
+- trzeba to zmienic:
+    - stworzyc interwał, który będzie sprawdzał np. co 200ms czy uzytkownik wygrał grę
