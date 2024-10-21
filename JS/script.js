@@ -50,6 +50,7 @@ function takeValues() {
   pointsToWin = pointToGet.value;
   amountOfElements = targetsMax.value;
   addTargetTime = addNewTarget.value;
+  custom.classList.remove("menu__custom--active");
   console.log(pointsToWin, amountOfElements, addTargetTime);
 }
 
@@ -193,12 +194,14 @@ function makeTargets() {
   const dot = document.createElement("div");
   dot.className = "dot";
 
-  if (counter === pointsToWin) {
+  if (counter == pointsToWin) {
     resultOFGame = 2;
     window.clearInterval(targets);
+    console.log("win");
     endGame();
-  } else if (activeElements === amountOfElements) {
+  } else if (activeElements == amountOfElements) {
     resultOFGame = 1;
+    console.log("lose");
     window.clearInterval(targets);
     endGame();
   } else {
@@ -207,7 +210,7 @@ function makeTargets() {
     targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
     dot.style.top = positionY + "%";
     dot.style.left = positionX + "%";
-
+    console.log(counter, pointsToWin);
     dot.addEventListener("click", shotOnTarget);
   }
 
