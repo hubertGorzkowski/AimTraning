@@ -100,6 +100,7 @@ function shotOnTarget() {
   counter++;
   activeElements--;
   pointsNumber.textContent = `Points: ${counter}/${pointsToWin}`;
+  targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
 }
 
 //funkcja wyświetla stan po zakończeniu gry
@@ -112,8 +113,8 @@ function endGame() {
     result.style.zIndex = "0";
     const gameResult = document.querySelector(".result__title");
     const statisticsOfGame = document.querySelector(".result__statistics");
-    pointsNumber.innerHTML = "";
-    targetsNumber.innerHTML = "";
+    pointsNumber.textContent = "";
+    targetsNumber.textContent = "";
 
     gameResult.classList.add("result__visible");
 
