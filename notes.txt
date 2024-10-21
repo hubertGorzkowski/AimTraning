@@ -1,16 +1,8 @@
 Problem z custom
-- zobaczyć czy custom prawidłowo zczytuje wprowadzone wartości
-- zobaczyć dlaczego nie działają min i max wartości w custom
-- po zmianie w custom pojawia sie kilka targetów jednoczesnie //mozliwe ze naprawione
-- po zmianie w custom nie da wie wygrac nawet jak zdobedzie sie odpowienia ilosc punktow
-Wchodzimy w custom settings
-- jak klikamy save settings to nam wychodzi i zapisuje ustawienia i zostaje zaznaczony tryb custom
+- zobaczyć dlaczego nie działają min i max wartości w custom //działają, tylko że
+jak używamy strzałek, a jak wpisujemy ręcznie to nie działa. Może dodać walidację
+do tego za pomocą if-ów
 
-
-W trakcie gry:
-- problem ze zliczaniem targetów, które są wyświetlane na ekranie, prawdopodobnie informacja ta aktualizuje
-się po kliknięciu w kropkę, a pomiędzy trafieniem w cel może zostać dodane np. 3 inne ale nie wiadomo czy to
-tak działa więc sprawdzić
 
 Po zakończeniu gry:
 - zmiana ekranu po wygraniu i przegraniu
@@ -24,3 +16,8 @@ nie dziala to plynnie. Tak samo jest z przegraną.
 - jest tak dlatego że jest to sprawdzane w if przy dodawaniu celu, a cel jest dodawany np. co 1s
 - trzeba to zmienic:
     - stworzyc interwał, który będzie sprawdzał np. co 200ms czy uzytkownik wygrał grę
+
+
+Pomysły:
+- dodać zmiane kolorów np. na czerwono swieci sie ilosc targetow jak staje sie 
+coraz blizej do przegrania, bo jest za dużo celi naraz
