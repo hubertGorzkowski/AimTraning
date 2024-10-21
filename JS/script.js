@@ -18,8 +18,8 @@ let counter = 0;
 let activeElements = 0;
 let resultOFGame;
 let pointsToWin = 25;
-let amountOfElements = 6;
-let addTargetTime = 600;
+let amountOfElements = 8;
+let addTargetTime = 500;
 let onOffInterval = false;
 const clickedBtnsIndex = [1];
 let targets;
@@ -211,7 +211,6 @@ function makeTargets() {
     targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
     dot.style.top = positionY + "%";
     dot.style.left = positionX + "%";
-    console.log(counter, pointsToWin);
     dot.addEventListener("click", shotOnTarget);
   }
 
