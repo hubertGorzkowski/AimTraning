@@ -289,6 +289,7 @@ div.countingToStart {
 
 .game.hide {
   animation: hideElements 2s 1 forwards;
+  transition: 1s;
 }
 
 @keyframes hideElements {
@@ -361,7 +362,7 @@ div.countingToStart {
 }
 
 .result.show {
-  z-index: 1;
+  animation: showAnimation 1 3s forwards;
 }
 
 .result__title {
