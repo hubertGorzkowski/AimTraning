@@ -13,6 +13,8 @@ let isStarted = false;
 const custom = document.querySelector(".menu__custom");
 const exitCustomSettings = document.querySelector(".fa-times");
 const saveSettingsBtn = document.querySelector(".menu__saveSettingsBtn");
+const gameResult = document.querySelector(".result__title");
+const statisticsOfGame = document.querySelector(".result__statistics");
 
 let counter = 0;
 let activeElements = 0;
@@ -103,16 +105,21 @@ function shotOnTarget() {
   targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
 }
 
+// funkcja usuwa kropki i zmienia widoczność sekcji
+const elementsAfterGame = () => {
+  const dots = document.querySelectorAll(".dot");
+  dots.forEach((dot) => {
+    dot.remove();
+  });
+  result.style.zIndex = "0";
+  gameSection.classList.remove("show");
+  gameSection.classList.add("hide");
+  result.classList.add("show");
+};
 //funkcja wyświetla stan po zakończeniu gry
 function endGame() {
-  function elementsAfterGame() {
-    const dots = document.querySelectorAll(".dot");
-    dots.forEach((dot) => {
-      dot.remove();
-    });
-    result.style.zIndex = "0";
-    const gameResult = document.querySelector(".result__title");
-    const statisticsOfGame = document.querySelector(".result__statistics");
+  elementsAfterGame();
+  function elementsAfterGames() {
     pointsNumber.textContent = "";
     targetsNumber.textContent = "";
 
