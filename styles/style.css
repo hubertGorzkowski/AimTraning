@@ -27,22 +27,7 @@ body {
 }
 
 .menu.hide {
-  animation: hideMenu 2s 1 forwards;
-}
-
-@keyframes hideMenu {
-  0% {
-    opacity: 1;
-    cursor: crosshair;
-  }
-  99% {
-    opacity: 0;
-  }
-  100% {
-    cursor: crosshair;
-    opacity: 0;
-    z-index: -1;
-  }
+  animation: hideElements 2s 1 forwards;
 }
 
 .menu__title {
@@ -302,6 +287,25 @@ div.countingToStart {
   z-index: 1;
 }
 
+.game.hide {
+  animation: hideElements 2s 1 forwards;
+}
+
+@keyframes hideElements {
+  0% {
+    opacity: 1;
+    cursor: crosshair;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    cursor: crosshair;
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
 .game__statisticsWrapper {
   position: absolute;
   top: 1%;
@@ -314,10 +318,10 @@ div.countingToStart {
 }
 
 .game__statisticsWrapper.showStats {
-  animation: showGameAnimation 1 3s forwards;
+  animation: showAnimation 1 3s forwards;
 }
 
-@keyframes showGameAnimation {
+@keyframes showAnimation {
   0% {
     opacity: 0;
   }
@@ -340,7 +344,7 @@ div.countingToStart {
   border-radius: 50%;
 }
 
-/* .result {
+.result {
   position: absolute;
   top: 0;
   left: 0;
@@ -353,9 +357,14 @@ div.countingToStart {
     rgb(43, 128, 157)
   );
   z-index: -2;
-} */
+  transition: 3s 1s;
+}
 
-/* .result__title {
+.result.show {
+  z-index: 1;
+}
+
+.result__title {
   text-transform: uppercase;
   font-size: 70px;
   box-shadow: none;
@@ -388,4 +397,4 @@ p span.result__span {
 
 .result__playAgain:hover {
   background-color: #fff;
-} */
+}
