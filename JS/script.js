@@ -18,7 +18,7 @@ const statisticsOfGame = document.querySelector(".result__statistics");
 
 let counter = 0;
 let activeElements = 0;
-let resultOFGame;
+let resultOfGame;
 let pointsToWin = 25;
 let amountOfElements = 8;
 let addTargetTime = 500;
@@ -111,56 +111,52 @@ const elementsAfterGame = () => {
   dots.forEach((dot) => {
     dot.remove();
   });
-  result.style.zIndex = "0";
   gameSection.classList.remove("show");
   gameSection.classList.add("hide");
   result.classList.add("show");
 };
+
+//funkcja sprawdza stan gry i wyświetla odpowiednie komunikaty
+const statusGame = () => {
+  if (resultOfGame == 2) {
+    gameResult.classList.add("result__win");
+    gameResult.innerText = "You won!";
+    statisticsOfGame.innerHTML = `
+  <p class="result__text result__text1">You shot down enough targets for ${difficultyLevel} level.</p>
+  <p class="result__text result__text2">If you want to play again on the same difficulty press the 'Play 
+  again' button! If you want change the level press 'go to menu'!</p>
+  `;
+  } else if (resultOfGame == 1) {
+    gameResult.classList.add("result__lost");
+    gameResult.innerText = "You lost!";
+
+    statisticsOfGame.innerHTML = `
+  <p class="result__text">You shot down ${counter}/${pointsToWin} targets on ${difficultyLevel} difficulty. Unfortunetly it was not enought to win!</p>
+  <p class="result__text result__text2">Try again by pressing the 'Play again' button! If you want change the level press 'go to menu'!</p>
+  `;
+  }
+};
+
 //funkcja wyświetla stan po zakończeniu gry
 function endGame() {
   elementsAfterGame();
-  function elementsAfterGames() {
-    pointsNumber.textContent = "";
-    targetsNumber.textContent = "";
+  statusGame();
 
-    gameResult.classList.add("result__visible");
-
-    function statusGame() {
-      if (resultOFGame == 2) {
-        gameResult.innerText = "You won!";
-        gameResult.classList.add("result__win");
-        statisticsOfGame.innerHTML = `
-    <p class="result__text">Congratulations, you've won. You've shot down enough targets for ${difficultyLevel} difficulty.</p>
-    <p class="result__text">If you want to play again, press the button!</p>
-    `;
-      } else if (resultOFGame == 1) {
-        gameResult.innerText = "You lost!";
-        gameResult.classList.add("result__lost");
-        statisticsOfGame.innerHTML = `
-    <p class="result__text">Unfortunately, you failed to win. Shoot down ${counter}/${pointsToWin} targets on ${difficultyLevel} difficulty.</p>
-    <p class="result__text">If you want to try again, <span class="result__span">press the button!</span></p>
-    `;
-      }
-    }
-    statusGame();
-
-    const resetGame = () => {
-      custom.classList.remove("menu__custom--active");
-      isStarted = false;
-      counter = 0;
-      activeElements = 0;
-      resultOFGame = 0;
-      pointsToWin = 25;
-      amountOfElements = 6;
-      addTargetTime = 600;
-      gameSection.style.zIndex = "-1";
-      result.style.zIndex = "-1";
-      difficultyLevelButtons[1].classList.add("menu__btn--checked");
-    };
-    const playAgainBtn = document.querySelector(".result__playAgain");
-    playAgainBtn.addEventListener("click", resetGame);
-  }
-  elementsAfterGame();
+  const resetGame = () => {
+    custom.classList.remove("menu__custom--active");
+    isStarted = false;
+    counter = 0;
+    activeElements = 0;
+    resultOfGame = 0;
+    pointsToWin = 25;
+    amountOfElements = 6;
+    addTargetTime = 600;
+    gameSection.style.zIndex = "-1";
+    result.style.zIndex = "-1";
+    difficultyLevelButtons[1].classList.add("menu__btn--checked");
+  };
+  const playAgainBtn = document.querySelector(".result__playAgain");
+  playAgainBtn.addEventListener("click", resetGame);
 }
 
 //odliczanie przed rozpoczeciem gry
@@ -203,13 +199,11 @@ function makeTargets() {
   dot.className = "dot";
 
   if (counter == pointsToWin) {
-    resultOFGame = 2;
+    resultOfGame = 2;
     window.clearInterval(targets);
-    console.log("win");
     endGame();
   } else if (activeElements == amountOfElements) {
-    resultOFGame = 1;
-    console.log("lose");
+    resultOfGame = 1;
     window.clearInterval(targets);
     endGame();
   } else {
