@@ -123,16 +123,17 @@ const statusGame = () => {
     gameResult.innerText = "You won!";
     statisticsOfGame.innerHTML = `
   <p class="result__text result__text1">You shot down enough targets for ${difficultyLevel} level.</p>
-  <p class="result__text result__text2">If you want to play again on the same difficulty press the 'Play 
-  again' button! If you want change the level press 'go to menu'!</p>
+  <p class="result__text result__text2">If you want to play again on the same difficulty press the <span>"PLAY
+  AGAIN"</span> button! If you want change the level press <span>"GO TO MENU"!</span></p>
   `;
   } else if (resultOfGame == 1) {
     gameResult.classList.add("result__lost");
     gameResult.innerText = "You lost!";
 
     statisticsOfGame.innerHTML = `
-  <p class="result__text">You shot down ${counter}/${pointsToWin} targets on ${difficultyLevel} difficulty. Unfortunetly it was not enought to win!</p>
-  <p class="result__text result__text2">Try again by pressing the 'Play again' button! If you want change the level press 'go to menu'!</p>
+  <p class="result__text">You shot down <span>${counter}/${pointsToWin}</span> targets on ${difficultyLevel} difficulty. Unfortunetly it was not enought to win!</p>
+
+  <p class="result__text result__text2">Try again by pressing the <span>"PLAY AGAIN"</span> button! If you want change the level press <span>"GO TO MENU"</span>!</p>
   `;
   }
 };
