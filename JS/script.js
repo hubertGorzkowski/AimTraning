@@ -15,6 +15,7 @@ const exitCustomSettings = document.querySelector(".fa-times");
 const saveSettingsBtn = document.querySelector(".menu__saveSettingsBtn");
 const gameResult = document.querySelector(".result__title");
 const statisticsOfGame = document.querySelector(".result__statistics");
+const playAgainBtn = document.querySelector(".result__playAgain");
 
 let counter = 0;
 let activeElements = 0;
@@ -142,23 +143,27 @@ const statusGame = () => {
 function endGame() {
   elementsAfterGame();
   statusGame();
-
-  const resetGame = () => {
-    custom.classList.remove("menu__custom--active");
-    isStarted = false;
-    counter = 0;
-    activeElements = 0;
-    resultOfGame = 0;
-    pointsToWin = 25;
-    amountOfElements = 6;
-    addTargetTime = 600;
-    gameSection.style.zIndex = "-1";
-    result.style.zIndex = "-1";
-    difficultyLevelButtons[1].classList.add("menu__btn--checked");
-  };
-  const playAgainBtn = document.querySelector(".result__playAgain");
-  playAgainBtn.addEventListener("click", resetGame);
 }
+
+const playAgain = () => {
+  console.log("dz");
+  gameSection.classList.remove("hide");
+  result.classList.remove("show");
+  result.classList.add("hide");
+  statisticsWrapper.classList.remove("showStats");
+  isStarted = false;
+  counter = 0;
+  activeElements = 0;
+  resultOfGame = 0;
+  onOffInterval = false;
+  startGame();
+  // custom.classList.remove("menu__custom--active");
+  // gameSection.style.zIndex = "-1";
+  // result.style.zIndex = "-1";
+  // difficultyLevelButtons[1].classList.add("menu__btn--checked");
+};
+
+playAgainBtn.addEventListener("click", playAgain);
 
 //odliczanie przed rozpoczeciem gry
 const countdown = () => {
@@ -170,6 +175,7 @@ const countdown = () => {
   let arrayIndex = 0;
 
   const countdownTimeout = () => {
+    console.log("w odliczaniu");
     if (arrayIndex === countdownArr.length) {
       setTimeout(function () {
         div.remove();
@@ -184,9 +190,9 @@ const countdown = () => {
     }
 
     if (arrayIndex === countdownArr.length - 1) {
-      statisticsWrapper.classList.add("showStats");
       pointsNumber.innerHTML = `Points: ${counter}/${pointsToWin}`;
       targetsNumber.innerHTML = `Targets: ${activeElements}/${amountOfElements}`;
+      statisticsWrapper.classList.add("showStats");
     }
   };
   setTimeout(countdownTimeout, 1000);
@@ -194,6 +200,7 @@ const countdown = () => {
 
 //funcja tworzy i dodaje cele i kontroluje kiedy jest przegrana i wygrana
 function makeTargets() {
+  console.log("w tworzeniu targetów");
   const positionY = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
   const positionX = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
   const dot = document.createElement("div");
@@ -233,6 +240,7 @@ function startGame() {
     menu.classList.add("hide");
     gameSection.classList.add("show");
     isStarted = !isStarted;
+    console.log("if w start game");
     setTimeout(countdown, 1000);
   } else {
     isStarted = !isStarted;
