@@ -289,7 +289,6 @@ div.countingToStart {
 
 .game.hide {
   animation: hideElements 2s 1 forwards;
-  transition: 1s;
 }
 
 @keyframes hideElements {
@@ -357,38 +356,57 @@ div.countingToStart {
     rgb(127, 127, 217),
     rgb(43, 128, 157)
   );
+  cursor: default;
   z-index: -2;
-  transition: 3s 1s;
+  transition: 3s;
 }
 
 .result.show {
   animation: showAnimation 1 3s forwards;
+  z-index: 1;
 }
 
 .result__title {
-  text-transform: uppercase;
+  margin: 90px 0 30px;
+  text-align: center;
   font-size: 70px;
   box-shadow: none;
+  text-transform: uppercase;
   text-shadow: 1px 1px 2px black;
 }
 
-.result__win {
-  text-shadow: rgb(1, 64, 1);
+.result__title.result__win {
+  text-shadow: 1px 1px 10px green;
 }
 
-.result__lost {
-  color: rgb(200, 3, 3);
+.result__title.result__lost {
+  text-shadow: 0px 0px 4px red;
 }
 
 .result__statistics {
-  width: 60vw;
-  margin: 15vh auto;
+  padding: 15px;
+  width: 55vw;
+  margin: 5vh auto 8vh;
   text-align: center;
   font-size: 32px;
 }
 
-p span.result__span {
-  font-size: 38px;
+.result__statistics .result__text {
+  padding: 20px;
+}
+
+.result__text span {
+  font-weight: bold;
+}
+
+.result_btnWrapper {
+  text-align: center;
+}
+
+.result_btnWrapper button {
+  border: 2px solid black;
+  margin: 1px auto;
+  cursor: pointer;
 }
 
 .result__playAgain {
