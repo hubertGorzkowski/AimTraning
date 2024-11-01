@@ -20,11 +20,11 @@ const difficultyLevelButtons = [
 const custom = document.querySelector(".menu__custom");
 const exitCustomSettings = document.querySelector(".fa-times");
 const clickedBtnsIndex = [1];
-let difficultyLevel = "normal";
-let isStarted = false;
 let pointToGet = document.getElementById("points");
 let targetsMax = document.getElementById("targets");
 let addNewTarget = document.getElementById("speed");
+let difficultyLevel = "normal";
+let isStarted = false;
 
 //variables to handle game section
 const statisticsWrapper = document.querySelector(".game__statisticsWrapper");
@@ -35,15 +35,15 @@ let amountOfElements = 8;
 let addTargetTime = 500;
 let counter = 0;
 let activeElements = 0;
-let targets;
 let onOffInterval = false;
+let targets;
 
 //variables to handle result section
 const gameResult = document.querySelector(".result__title");
 const statisticsOfGame = document.querySelector(".result__statistics");
 let resultOfGame;
 
-//obsługa wyjscia z custom
+//exit custom settings using 'X'
 const exitSettingsUsingX = () => {
   const index = clickedBtnsIndex[clickedBtnsIndex.length - 2];
   const lastButton = difficultyLevelButtons[index];
@@ -55,7 +55,7 @@ const exitSettingsUsingX = () => {
 };
 exitCustomSettings.addEventListener("click", exitSettingsUsingX);
 
-//pobranie zasad gry z custom
+//take values from custom settings
 function takeValues() {
   difficultyLevel = "custom";
   pointsToWin = pointToGet.value;
@@ -64,7 +64,7 @@ function takeValues() {
   custom.classList.remove("menu__custom--active");
 }
 
-//ustawienia poziomów trudności
+//difficulty level settings
 const gameRules = (button) => {
   const clickedButton = button.target;
   if (difficultyLevelButtons[0] == clickedButton) {
@@ -83,13 +83,13 @@ const gameRules = (button) => {
     amountOfElements = 5;
     addTargetTime = 600;
   } else if (difficultyLevelButtons[3] == clickedButton) {
-    //włączenie customMenu
+    //open custom settingsg
     custom.classList.add("menu__custom--active");
     saveSettingsBtn.addEventListener("click", takeValues);
   }
 };
 
-//zmiana wybranego trybu gry
+//change difficulty level
 const chooseDifficultyLevel = (button) => {
   const lastClickedBtn = difficultyLevelButtons.indexOf(button.target);
   clickedBtnsIndex.push(lastClickedBtn);
@@ -104,7 +104,7 @@ difficultyLevelButtons.forEach((button) =>
   button.addEventListener("click", chooseDifficultyLevel)
 );
 
-//funkcja wykrywa czy uzytkownik trafil w cel i zwieksza licznik
+//handle target hit
 function shotOnTarget() {
   gameSection.removeChild(this);
   counter++;
@@ -113,19 +113,7 @@ function shotOnTarget() {
   targetsNumber.textContent = `Targets: ${activeElements}/${amountOfElements}`;
 }
 
-// funkcja usuwa kropki i zmienia widoczność sekcji
-const elementsAfterGame = () => {
-  const dots = document.querySelectorAll(".dot");
-  dots.forEach((dot) => {
-    dot.remove();
-  });
-  gameSection.classList.remove("show");
-  gameSection.classList.add("hide");
-  result.classList.remove("hide");
-  result.classList.add("show");
-};
-
-//funkcja sprawdza stan gry i wyświetla odpowiednie komunikaty
+//add content to elements in section result
 const statusGame = () => {
   if (resultOfGame == 2) {
     gameResult.classList.add("result__win");
@@ -147,41 +135,43 @@ const statusGame = () => {
   }
 };
 
-//funkcja wyświetla stan po zakończeniu gry
-function endGame() {
-  elementsAfterGame();
+//handle scene change, on section result, off section game
+const elementsAfterGame = () => {
+  const dots = document.querySelectorAll(".dot");
+  dots.forEach((dot) => {
+    dot.remove();
+  });
+  gameSection.classList.remove("show");
+  gameSection.classList.add("hide");
+  result.classList.remove("hide");
+  result.classList.add("show");
   statusGame();
-}
+};
 
-//funkcja zaczyna nową grę na tych samych zasadach co poprzednio
+//start new game on previously selected rules
 const playAgain = () => {
   gameSection.classList.remove("hide");
   result.classList.remove("show");
   result.classList.add("hide");
   statisticsWrapper.classList.remove("showStats");
+  gameResult.classList.remove("result__lost");
+  gameResult.classList.remove("result__win");
   isStarted = false;
   counter = 0;
   activeElements = 0;
   resultOfGame = 0;
   onOffInterval = false;
-  gameResult.classList.remove("result__lost");
-  gameResult.classList.remove("result__win");
   startGame();
-  // custom.classList.remove("menu__custom--active");
-  // gameSection.style.zIndex = "-1";
-  // result.style.zIndex = "-1";
-  // difficultyLevelButtons[1].classList.add("menu__btn--checked");
 };
-
 playAgainBtn.addEventListener("click", playAgain);
 
+//handle backToMenu button
 const backToMenu = () => {
   window.location.reload();
 };
-
 backToMenuBtn.addEventListener("click", backToMenu);
 
-//odliczanie przed rozpoczeciem gry
+//countdown before a game
 const countdown = () => {
   const countdownArr = ["3", "2", "1", "Shoot!"];
   const div = document.createElement("div");
@@ -213,7 +203,7 @@ const countdown = () => {
   setTimeout(countdownTimeout, 1000);
 };
 
-//funcja tworzy i dodaje cele i kontroluje kiedy jest przegrana i wygrana
+//add new targets, handle result of game
 function makeTargets() {
   const positionY = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
   const positionX = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
@@ -223,11 +213,11 @@ function makeTargets() {
   if (counter == pointsToWin) {
     resultOfGame = 2;
     window.clearInterval(targets);
-    endGame();
+    elementsAfterGame();
   } else if (activeElements == amountOfElements) {
     resultOfGame = 1;
     window.clearInterval(targets);
-    endGame();
+    elementsAfterGame();
   } else {
     gameSection.appendChild(dot);
     activeElements++;
@@ -243,7 +233,7 @@ function makeTargets() {
   }
 }
 
-//start gry, zmiana sekcji na game, obsługa animacji
+//handle game start, on game section, off menu section
 function startGame() {
   menu.style.pointerEvents = "none";
   setTimeout(function () {
@@ -260,5 +250,4 @@ function startGame() {
     menu.classList.remove("hide");
   }
 }
-
 startBtn.addEventListener("click", startGame);
