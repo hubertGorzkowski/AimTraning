@@ -1,40 +1,47 @@
 document.onselectstart = function () {
   return false;
 };
-const startBtn = document.body.querySelector(".menu__btn--play");
+
+//main scenes
 const menu = document.body.querySelector("main.menu");
 const gameSection = document.querySelector(".game");
-const statisticsWrapper = document.querySelector(".game__statisticsWrapper");
 const result = document.querySelector(".result");
-const pointsNumber = document.querySelector(".game__statistics--points");
-const targetsNumber = document.querySelector(".game__statistics--targets");
-let difficultyLevel = "normal";
-let isStarted = false;
-const custom = document.querySelector(".menu__custom");
-const exitCustomSettings = document.querySelector(".fa-times");
+
+//buttons
+const startBtn = document.body.querySelector(".menu__btn--play");
 const saveSettingsBtn = document.querySelector(".menu__saveSettingsBtn");
-const gameResult = document.querySelector(".result__title");
-const statisticsOfGame = document.querySelector(".result__statistics");
 const playAgainBtn = document.querySelector(".result__playAgain");
 const backToMenuBtn = document.querySelector(".result__backToMenu");
+const difficultyLevelButtons = [
+  ...document.querySelectorAll(".menu__wrapper .menu__btn"),
+];
 
-let counter = 0;
-let activeElements = 0;
-let resultOfGame;
-let pointsToWin = 25;
-let amountOfElements = 8;
-let addTargetTime = 500;
-let onOffInterval = false;
+//variables to handle menu section
+const custom = document.querySelector(".menu__custom");
+const exitCustomSettings = document.querySelector(".fa-times");
 const clickedBtnsIndex = [1];
-let targets;
-
+let difficultyLevel = "normal";
+let isStarted = false;
 let pointToGet = document.getElementById("points");
 let targetsMax = document.getElementById("targets");
 let addNewTarget = document.getElementById("speed");
 
-const difficultyLevelButtons = [
-  ...document.querySelectorAll(".menu__wrapper .menu__btn"),
-];
+//variables to handle game section
+const statisticsWrapper = document.querySelector(".game__statisticsWrapper");
+const pointsNumber = document.querySelector(".game__statistics--points");
+const targetsNumber = document.querySelector(".game__statistics--targets");
+let pointsToWin = 25;
+let amountOfElements = 8;
+let addTargetTime = 500;
+let counter = 0;
+let activeElements = 0;
+let targets;
+let onOffInterval = false;
+
+//variables to handle result section
+const gameResult = document.querySelector(".result__title");
+const statisticsOfGame = document.querySelector(".result__statistics");
+let resultOfGame;
 
 //obsługa wyjscia z custom
 const exitSettingsUsingX = () => {
@@ -55,7 +62,6 @@ function takeValues() {
   amountOfElements = targetsMax.value;
   addTargetTime = addNewTarget.value;
   custom.classList.remove("menu__custom--active");
-  console.log(pointsToWin, amountOfElements, addTargetTime);
 }
 
 //ustawienia poziomów trudności
@@ -122,7 +128,6 @@ const elementsAfterGame = () => {
 //funkcja sprawdza stan gry i wyświetla odpowiednie komunikaty
 const statusGame = () => {
   if (resultOfGame == 2) {
-    console.log("win");
     gameResult.classList.add("result__win");
     gameResult.innerText = "You won!";
     statisticsOfGame.innerHTML = `
@@ -131,7 +136,6 @@ const statusGame = () => {
   AGAIN"</span> button! If you want change the level press <span>"GO TO MENU"!</span></p>
   `;
   } else if (resultOfGame == 1) {
-    console.log("lose");
     gameResult.classList.add("result__lost");
     gameResult.innerText = "You lost!";
 
@@ -151,7 +155,6 @@ function endGame() {
 
 //funkcja zaczyna nową grę na tych samych zasadach co poprzednio
 const playAgain = () => {
-  console.log("dz");
   gameSection.classList.remove("hide");
   result.classList.remove("show");
   result.classList.add("hide");
@@ -188,7 +191,6 @@ const countdown = () => {
   let arrayIndex = 0;
 
   const countdownTimeout = () => {
-    console.log("w odliczaniu");
     if (arrayIndex === countdownArr.length) {
       setTimeout(function () {
         div.remove();
@@ -213,7 +215,6 @@ const countdown = () => {
 
 //funcja tworzy i dodaje cele i kontroluje kiedy jest przegrana i wygrana
 function makeTargets() {
-  console.log("w tworzeniu targetów");
   const positionY = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
   const positionX = Math.floor(Math.random() * (95 - 10 + 1)) + 10;
   const dot = document.createElement("div");
@@ -253,7 +254,6 @@ function startGame() {
     menu.classList.add("hide");
     gameSection.classList.add("show");
     isStarted = !isStarted;
-    console.log("if w start game");
     setTimeout(countdown, 1000);
   } else {
     isStarted = !isStarted;
