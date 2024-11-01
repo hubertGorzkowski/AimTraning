@@ -1,14 +1,9 @@
-Problem z custom
+Problem z custom:
 - zobaczyć dlaczego nie działają min i max wartości w custom //działają, tylko że
 jak używamy strzałek, a jak wpisujemy ręcznie to nie działa. Może dodać walidację
 do tego za pomocą if-ów
 
-
-Po zakończeniu gry:
-- zmiana ekranu po wygraniu i przegraniu
-- dodanie przycisku zagraj ponownie (czyli na tych samych ustawieniach co były wczesniej)
-- dodanie przycisku wroc do wyboru poziomu trudnosci
-
+- poprawic przejscia pomiedzy sekcjami, przejscie po kliknieciu play again
 
 Optymalizacja:
 Pokazuje ze wygrales dopiero po chwili jak zdobyles wystarczajaco liczbe punktow,
