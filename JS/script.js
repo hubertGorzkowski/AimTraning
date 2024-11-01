@@ -16,6 +16,7 @@ const saveSettingsBtn = document.querySelector(".menu__saveSettingsBtn");
 const gameResult = document.querySelector(".result__title");
 const statisticsOfGame = document.querySelector(".result__statistics");
 const playAgainBtn = document.querySelector(".result__playAgain");
+const backToMenuBtn = document.querySelector(".result__backToMenu");
 
 let counter = 0;
 let activeElements = 0;
@@ -170,6 +171,12 @@ const playAgain = () => {
 };
 
 playAgainBtn.addEventListener("click", playAgain);
+
+const backToMenu = () => {
+  window.location.reload();
+};
+
+backToMenuBtn.addEventListener("click", backToMenu);
 
 //odliczanie przed rozpoczeciem gry
 const countdown = () => {
