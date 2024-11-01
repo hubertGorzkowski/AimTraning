@@ -10,7 +10,6 @@ html {
 }
 
 body {
-  transition: 0.5s 1s;
   overflow: hidden;
 }
 
@@ -358,12 +357,16 @@ div.countingToStart {
   );
   cursor: default;
   z-index: -2;
-  transition: 3s;
+  transition: 1s;
 }
 
 .result.show {
-  animation: showAnimation 1 3s forwards;
+  animation: showAnimation 2s 1 forwards;
   z-index: 1;
+}
+
+.result.hide {
+  animation: hideElements 20s 1 forwards;
 }
 
 .result__title {
@@ -409,11 +412,9 @@ div.countingToStart {
   cursor: pointer;
 }
 
-.result__playAgain {
+.result__playAgain,
+.result__backToMenu {
   display: block;
   font-size: 30px;
-}
-
-.result__playAgain:hover {
-  background-color: #fff;
+  transition: 0.2s;
 }
