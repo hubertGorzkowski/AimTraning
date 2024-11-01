@@ -114,12 +114,14 @@ const elementsAfterGame = () => {
   });
   gameSection.classList.remove("show");
   gameSection.classList.add("hide");
+  result.classList.remove("hide");
   result.classList.add("show");
 };
 
 //funkcja sprawdza stan gry i wyświetla odpowiednie komunikaty
 const statusGame = () => {
   if (resultOfGame == 2) {
+    console.log("win");
     gameResult.classList.add("result__win");
     gameResult.innerText = "You won!";
     statisticsOfGame.innerHTML = `
@@ -128,6 +130,7 @@ const statusGame = () => {
   AGAIN"</span> button! If you want change the level press <span>"GO TO MENU"!</span></p>
   `;
   } else if (resultOfGame == 1) {
+    console.log("lose");
     gameResult.classList.add("result__lost");
     gameResult.innerText = "You lost!";
 
@@ -145,6 +148,7 @@ function endGame() {
   statusGame();
 }
 
+//funkcja zaczyna nową grę na tych samych zasadach co poprzednio
 const playAgain = () => {
   console.log("dz");
   gameSection.classList.remove("hide");
@@ -156,6 +160,8 @@ const playAgain = () => {
   activeElements = 0;
   resultOfGame = 0;
   onOffInterval = false;
+  gameResult.classList.remove("result__lost");
+  gameResult.classList.remove("result__win");
   startGame();
   // custom.classList.remove("menu__custom--active");
   // gameSection.style.zIndex = "-1";
